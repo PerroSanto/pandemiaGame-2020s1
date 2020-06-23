@@ -1,13 +1,16 @@
+import simulacion.*
+import manzanas.*
+
 class Persona {
 	var property estaAislada = false
-	
-	method estaInfectada() {
-		return false
-		// implementar
-	}
+	var property estaInfectada = false
+	var property diaDeInfeccion = 0
+	var property presentaSintomas = false
+	var property respetaCuarentena = false
 	
 	method infectarse() {
-		// implementar 
+		diaDeInfeccion = simulacion.diaActual() // falta implementar
+		estaInfectada = true
 	}
 }
 
