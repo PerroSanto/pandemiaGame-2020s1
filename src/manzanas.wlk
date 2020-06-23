@@ -12,6 +12,20 @@ class Manzana {
 		return "blanco.png"
 	}
 	
+	method agregarHabitante(unaPersona){
+		personas.add(unaPersona)
+	}
+	
+	method agregarHabitantes(unConjuntoDePersonas){
+		personas.addAll(unConjuntoDePersonas)
+		//agrega un conjunto de personas a la manzana.
+	}
+	
+	method cantidadHabitantes(){
+		return personas.size() 
+		//Devuelve la cantidad de personas que viven en una Manzana
+	}
+	
 	// este les va a servir para el movimiento
 	method esManzanaVecina(manzana) {
 		return manzana.position().distance(position) == 1
@@ -28,8 +42,8 @@ class Manzana {
 	}
 	
 	method cantidadContagiadores() {
-		return 0
-		// reemplazar por la cantidad de personas infectadas que no estan aisladas
+		return personas.count({persona => persona.estaInfectada() and not persona.estaAislada()})
+		// Devuelve la cantidad de personas infectadas que no estan aisladas
 	}
 	
 	method noInfectades() {
