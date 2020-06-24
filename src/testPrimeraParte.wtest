@@ -3,15 +3,17 @@ import personas.*
 import simulacion.*
 import wollok.game.*
 
-describe "Test de manzanas y personas"{
-	//Creamos una manzana para realizar pruebas
-	const manzana1 = new Manzana(position = game.at(0,0))
-	//Y a 3 personas que le vamos a cambiar las configuraciones.
-	const miguel = new Persona()
-	const maria = new Persona()
-	const juan = new Persona()
-	const conjunto = #{miguel,maria,juan}//Se usa para añadirlos todos en la manzana.
+//Creamos una manzana para realizar pruebas
+const manzana1 = new Manzana(position = game.at(0,0))
+//Y a 3 personas que le vamos a cambiar las configuraciones.
+const miguel = new Persona()
+const maria = new Persona()
+const juan = new Persona()
+const conjunto = #{miguel,maria,juan}//Se usa para añadirlos todos en la manzana.
 	
+
+describe "Test de manzanas y personas"{
+
 	//Se arma la escena de las pruebas.
 	fixture{
 		//miguel va a ser una persona por default.
@@ -24,6 +26,8 @@ describe "Test de manzanas y personas"{
 		juan.infectarse()
 		//juan es el unico que presenta los sintomas.
 		juan.presentaSintomas(true)
+		// maria esta aislada.
+		maria.estaAislada(true)
 		//agregamos estas personas a la manzana.
 		manzana1.agregarHabitantes(conjunto)
 	}
@@ -47,5 +51,16 @@ describe "Test de manzanas y personas"{
 		assert.notThat(juan.respetaCuarentena())
 	}
 	
+	test "Cuanta gente vive en la manzana?"{
+		assert.equals(3,manzana1.cantidadHabitantes())
+	}
+	
+	test "Cuantas personas están infectadas?"{
+		assert.equals(2,manzana1.cantidadInfectados())
+	}
+	
+	test "Cuantos contagiadores hay?"{
+		assert.equals(1,manzana1.cantidadContagiadores())
+	}
 	
 }
