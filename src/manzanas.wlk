@@ -41,6 +41,11 @@ class Manzana {
 		// implementar
 	}
 	
+	method cantidadInfectados(){
+		return personas.count({persona => persona.estaInfectada()})
+		// Devuelve la cantidad de personas infectadas
+	}
+	
 	method cantidadContagiadores() {
 		return personas.count({persona => persona.estaInfectada() and not persona.estaAislada()})
 		// Devuelve la cantidad de personas infectadas que no estan aisladas
