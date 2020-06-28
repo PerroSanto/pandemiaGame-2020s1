@@ -1,0 +1,8 @@
+import manzanas.*
+import personas.*
+import simulacion.*
+import wollok.game.*
+
+//CONSULTARLE A PROFE COMO HACER EL TEST
+//YA QUE NO SE SABE A CIENCIA CIERTA
+//CUANTAS PERSONAS SE VAYAN A INFECTAR.
