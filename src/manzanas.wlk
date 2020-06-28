@@ -32,7 +32,7 @@ class Manzana {
 	}
 
 	method pasarUnDia() {
-		self.transladoDeUnHabitante()
+		// self.transladoDeUnHabitante() DESCOMENTAR LUEGO
 		//self.simulacionContagiosDiarios()
 		self.simulacionContagiosDiariosPorCantidadDeInfectados()
 		// despues agregar la curacion
