@@ -9,7 +9,7 @@ class Manzana {
 	method image() {
 		// reeemplazarlo por los distintos colores de acuerdo a la cantidad de infectados
 		// también vale reemplazar estos dibujos horribles por otros más lindos
-		return "blanco.png"
+		return "blanco_alt2.png"
 	}
 	
 	method agregarHabitante(unaPersona){
@@ -33,7 +33,8 @@ class Manzana {
 
 	method pasarUnDia() {
 		self.transladoDeUnHabitante()
-		self.simulacionContagiosDiarios()
+		//self.simulacionContagiosDiarios()
+		self.simulacionContagiosDiariosPorCantidadDeInfectados()
 		// despues agregar la curacion
 	}
 	
@@ -45,10 +46,14 @@ class Manzana {
 		return personas.count({persona => persona.estaInfectada()})
 		// Devuelve la cantidad de personas infectadas
 	}
-	
+//revisar
 	method cantidadContagiadores() {
 		return personas.count({persona => persona.estaInfectada() and not persona.estaAislada()})
 		// Devuelve la cantidad de personas infectadas que no estan aisladas
+	}
+//nos	
+	method simulacionContagiosDiariosPorCantidadDeInfectados(){
+		(1..self.cantidadInfectados()).forEach({f=>self.simulacionContagiosDiarios()})
 	}
 	
 	method noInfectades() {
@@ -74,4 +79,5 @@ class Manzana {
 			self.personaSeMudaA(viajero, destino)			
 		}
 	}
+	
 }

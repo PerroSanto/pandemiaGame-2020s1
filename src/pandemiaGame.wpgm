@@ -20,8 +20,8 @@ object pandemiaGameConfig {
 	}
 	
 	method agregarManzanas() {
-		(1..game.width()).forEach({x => 
-			(1..game.height()).forEach({y => 
+		(0..game.width()-1).forEach({x => 
+			(0..game.height()-1).forEach({y => 
 				const nuevaManzana = simulacion.crearManzana()
 				nuevaManzana.position(game.at(x-1,y-1))
 				simulacion.agregarManzana(nuevaManzana)

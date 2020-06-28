@@ -29,9 +29,14 @@ object simulacion {
 		return (1..cantidadContagiadores).any({n => self.tomarChance(chanceDeContagio) })	
 	}
 
-	method crearManzana() {
-		const nuevaManzana = new Manzana()
-		// agregar la cantidad de personas segun self.personasPorManzana()
-		return nuevaManzana
-	}
+	method crearPersona(){
+        const persona = new Persona()
+        return persona
+    }
+
+    method crearManzana() {
+        const nuevaManzana = new Manzana()
+        (1..self.personasPorManzana()).forEach({y => nuevaManzana.agregarHabitante(self.crearPersona())})
+        return nuevaManzana
+    }
 }
