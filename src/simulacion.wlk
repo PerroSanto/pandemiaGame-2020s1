@@ -28,7 +28,12 @@ object simulacion {
 			self.chanceDeContagioSinCuarentena()
 		return (1..cantidadContagiadores).any({n => self.tomarChance(chanceDeContagio) })	
 	}
-
+	
+	method pasarUnDia(){
+		manzanas.forEach({m => m.pasarUnDia()})
+		diaActual += 1
+	}
+	
 	method crearPersona(){
         const persona = new Persona()
         return persona
