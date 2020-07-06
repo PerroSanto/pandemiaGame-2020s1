@@ -31,17 +31,52 @@ object simulacion {
 	
 	method pasarUnDia(){
 		manzanas.forEach({m => m.pasarUnDia()})
+		manzanas.forEach({m => m.pasarUnDia()})
 		diaActual += 1
+		return "Terminó el día: " + (self.diaActual() - 1)
 	}
 	
 	method crearPersona(){
-        const persona = new Persona()
-        return persona
+        return new Persona()
     }
 
     method crearManzana() {
         const nuevaManzana = new Manzana()
         (1..self.personasPorManzana()).forEach({y => nuevaManzana.agregarHabitante(self.crearPersona())})
         return nuevaManzana
+    }
+    
+    method cantidadTotalDeInfectados(){//Creado por David G.
+    	return manzanas.sum({m => m.cantidadInfectados()})
+    }
+    
+    method cantidadTotalDePersonas(){//Creado por David G.
+    	return manzanas.sum({m => m.cantidadHabitantes()})
+    }
+    
+    method cantidadTotalConSintomas(){//Creado por David G.
+    	return manzanas.sum({m => m.cantidadConSintomas()})
+    }
+    
+    method cantidadDeManzanas(){//Creado por David G.
+    	return manzanas.size()
+    }
+    
+    method estadoDeSimulacion(){//Creado por David G.
+		return "Día: " + simulacion.diaActual() + ", Total de personas: " + simulacion.cantidadTotalDePersonas()
+ 		+ ", infectados: " + simulacion.cantidadTotalDeInfectados() + ", con síntomas: " + simulacion.cantidadTotalConSintomas()
+	}
+    
+    method agregarPersonaEnManzanaAleatoria(persona){//Creado por David G.
+    	//Seleccionamos una manzana aleatoria.
+    	const unaManzana = manzanas.get(0.randomUpTo(self.cantidadDeManzanas() - 1))
+    	//Agregamos a la persona.
+    	unaManzana.agregarHabitante(persona)
+    }
+    
+    method agregarInfectadoEnManzanaAleatoria(){//Creado por David G.
+    	const infectado = new Persona()
+    	infectado.infectarse()
+    	self.agregarPersonaEnManzanaAleatoria(infectado)
     }
 }

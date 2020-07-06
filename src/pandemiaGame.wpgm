@@ -10,6 +10,22 @@ object pandemiaGameConfig {
 		self.configureGameParameters()
 		self.agregarManzanas()
 		// agregar las teclas de acciones
+		
+		/* Consultar estado general de la simulacion:
+		 * TECLA: h */ //Creado por David G.
+		 
+		keyboard.h().onPressDo{console.println(simulacion.estadoDeSimulacion())}
+		
+		/* Agregar una persona infectada en manzana al azar:
+		 * TECLA: j */ //Creado por David G.
+		
+		keyboard.j().onPressDo{simulacion.agregarInfectadoEnManzanaAleatoria()}
+		
+		/* Simular el paso de un día:
+		 * TECLA: k */ //Creado por David G.
+		
+		keyboard.k().onPressDo{console.println(simulacion.pasarUnDia())}
+		
 		// después, al agente de salud y sus teclas de acciones y movimiento
 	}
 		
@@ -30,10 +46,15 @@ object pandemiaGameConfig {
 		})
 	}
 	
+	
+	
 }
 
 program pandemiaGame {
 	pandemiaGameConfig.configureGame()
 	game.start()
+	
 }
+
+
 

@@ -6,10 +6,26 @@ class Manzana {
 	const property personas = []
 	var property position
 	
-	method image() {
-		// reeemplazarlo por los distintos colores de acuerdo a la cantidad de infectados
-		// también vale reemplazar estos dibujos horribles por otros más lindos
-		return "blanco_alt2.png"
+	method image() {//RESUELTO POR DAVID G.
+		// Estos comentarios vinieron por default:
+		// "reeemplazarlo por los distintos colores de acuerdo a la cantidad de infectados
+		// también vale reemplazar estos dibujos horribles por otros más lindos"
+		if(self.estanTodosInfectados()){
+			return "rojo_alt.png"
+		}else if(self.cantidadInfectados().between(8,self.cantidadHabitantes() - 1)){
+			return "naranjaOscuro_alt.png"
+		}else if(self.cantidadInfectados().between(4,7)){
+			return "naranja_alt.png"
+		}else if(self.cantidadInfectados().between(1,3)){
+			return "amarillo_alt.png"
+		}else{
+			return "blanco_alt2.png"
+		}
+	
+	}
+	
+	method estanTodosInfectados(){
+		return personas.all({persona => persona.estaInfectada()})
 	}
 	
 	method agregarHabitante(unaPersona){
@@ -40,6 +56,10 @@ class Manzana {
 	
 	method personaSeMudaA(persona, manzanaDestino) {
 		// implementar
+	}
+	
+	method cantidadConSintomas(){//Creado por David G.
+		return personas.count({p => p.presentaSintomas()})
 	}
 	
 	method cantidadInfectados(){
