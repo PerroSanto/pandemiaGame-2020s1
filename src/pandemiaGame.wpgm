@@ -14,7 +14,7 @@ object pandemiaGameConfig {
 		/* Consultar estado general de la simulacion:
 		 * TECLA: h */ //Creado por David G.
 		 
-		keyboard.h().onPressDo{console.println(simulacion.estadoDeSimulacion())}
+		keyboard.h().onPressDo{simulacion.estadoDeSimulacion()}
 		
 		/* Agregar una persona infectada en manzana al azar:
 		 * TECLA: j */ //Creado por David G.
@@ -24,7 +24,7 @@ object pandemiaGameConfig {
 		/* Simular el paso de un día:
 		 * TECLA: k */ //Creado por David G.
 		
-		keyboard.k().onPressDo{console.println(simulacion.pasarUnDia())}
+		keyboard.k().onPressDo{simulacion.pasarUnDia()}
 		
 		// después, al agente de salud y sus teclas de acciones y movimiento
 	}
