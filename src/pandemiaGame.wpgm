@@ -1,0 +1,87 @@
+import wollok.game.*
+import simulacion.*
+import agente.*
+
+object pandemiaGameConfig {
+	method height() = 6
+	method width() = 4
+	method title() = "Simuléichon"
+	
+	method configureGame() {
+		self.configureGameParameters()
+		self.agregarManzanas()
+		self.agregarAgente()
+		// agregar las teclas de acciones
+		
+		/* Consultar estado general de la simulacion:
+		 * TECLA: h */
+		 
+		keyboard.h().onPressDo{simulacion.estadoDeSimulacion()}
+		
+		/* Agregar una persona infectada en manzana al azar:
+		 * TECLA: j */ 
+		
+		keyboard.j().onPressDo{simulacion.agregarInfectadoEnManzanaAleatoria()}
+		
+		/* Simular el paso de un día:
+		 * TECLA: k */ 
+		
+		keyboard.k().onPressDo{simulacion.pasarUnDia()}
+		
+		// después, al agente de salud y sus teclas de acciones y movimiento
+		
+		//Movimientos del Agente:
+		keyboard.right().onPressDo{ if(agente.position().x() < self.width()-1) {agente.moverDerecha()} }
+   		keyboard.left().onPressDo{ if(agente.position().x() > 0) {agente.moverIzquierda()} } 
+    	keyboard.up().onPressDo{ if(agente.position().y() < self.height()-1) {agente.moverArriba() } }
+    	keyboard.down().onPressDo{ if(agente.position().y() > 0) {agente.moverAbajo()} }
+    	
+    	/* Aislar infectades:
+		 * TECLA: a */ 
+    	
+    	keyboard.a().onPressDo{agente.aislarInfectadesConSintomas()
+    		game.say(agente, "Te metemos en aislamiento.")
+    	}
+    	
+    	/* Convencer que respeten cuarentena:
+		 * TECLA: s */ 
+		 
+		 keyboard.s().onPressDo{
+		 	agente.acuarentenar()
+		 	game.say(agente, "Porfavor, quedense en casa!.")
+		 }
+		 	
+		 }
+		
+	method configureGameParameters() {
+		game.height(self.height())
+		game.width(self.width())
+		game.title(self.title())
+	}
+	 
+	method agregarManzanas() {
+		(0..game.width()-1).forEach({x => 
+			(0..game.height()-1).forEach({y => 
+				const nuevaManzana = simulacion.crearManzana()
+				nuevaManzana.position(game.at(x,y))
+				simulacion.agregarManzana(nuevaManzana)
+				game.addVisual(nuevaManzana)
+			})
+		})
+	}
+	
+	method agregarAgente(){
+		agente.position(game.origin())
+		game.addVisual(agente)
+	}
+	
+}
+
+program pandemiaGame {
+	pandemiaGameConfig.configureGame()
+	game.start()
+	
+}
+
+
+
