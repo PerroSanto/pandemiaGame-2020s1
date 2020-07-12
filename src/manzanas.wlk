@@ -6,8 +6,7 @@ class Manzana {
 	const property personas = []
 	var property position
 	
-	method image() {//RESUELTO POR DAVID G.
-		// Estos comentarios vinieron por default:
+	method image() {
 		// "reeemplazarlo por los distintos colores de acuerdo a la cantidad de infectados
 		// también vale reemplazar estos dibujos horribles por otros más lindos"
 		if(self.estanTodosInfectados()){
@@ -21,7 +20,6 @@ class Manzana {
 		}else{
 			return "blanco_alt2.png"
 		}
-	
 	}
 	
 	method estanTodosInfectados(){
@@ -32,18 +30,18 @@ class Manzana {
 		personas.add(unaPersona)
 	}
 	
-	method agregarHabitantes(unConjuntoDePersonas){
+	method agregarHabitantes(unConjuntoDePersonas){//agrega un conjunto de personas a la manzana.
 		personas.addAll(unConjuntoDePersonas)
-		//agrega un conjunto de personas a la manzana.
+		
 	}
 	
 	method borrarHabitante(unaPersona){
 		personas.remove(unaPersona)
 	}
 	
-	method cantidadHabitantes(){
+	method cantidadHabitantes(){//Devuelve la cantidad de personas que viven en una Manzana
 		return personas.size() 
-		//Devuelve la cantidad de personas que viven en una Manzana
+		
 	}
 	
 	// este les va a servir para el movimiento
@@ -57,25 +55,25 @@ class Manzana {
 		personas.forEach({p => p.pasarDia()})
 	}
 	
-	method personaSeMudaA(persona, manzanaDestino) {//Resuelto en grupo.
+	method personaSeMudaA(persona, manzanaDestino) {
 		self.borrarHabitante(persona)
 		manzanaDestino.agregarHabitante(persona)
 	}
 	
-	method cantidadConSintomas(){//Creado por David G.
+	method cantidadConSintomas(){
 		return personas.count({p => p.presentaSintomas()})
 	}
 	
-	method cantidadInfectados(){
+	method cantidadInfectados(){// Devuelve la cantidad de personas infectadas
 		return personas.count({persona => persona.estaInfectada()})
-		// Devuelve la cantidad de personas infectadas
+		
 	}
-//revisar
-	method cantidadContagiadores() {
+
+	method cantidadContagiadores() {// Devuelve la cantidad de personas infectadas que no estan aisladas
 		return personas.count({persona => persona.estaInfectada() and not persona.estaAislada()})
-		// Devuelve la cantidad de personas infectadas que no estan aisladas
+		
 	}
-//nos	
+	
 	method simulacionContagiosDiariosPorCantidadDeInfectados(){
 		(1..self.cantidadInfectados()).forEach({f=>self.simulacionContagiosDiarios()})
 	}

@@ -14,17 +14,17 @@ object pandemiaGameConfig {
 		// agregar las teclas de acciones
 		
 		/* Consultar estado general de la simulacion:
-		 * TECLA: h */ //Creado por David G.
+		 * TECLA: h */
 		 
 		keyboard.h().onPressDo{simulacion.estadoDeSimulacion()}
 		
 		/* Agregar una persona infectada en manzana al azar:
-		 * TECLA: j */ //Creado por David G.
+		 * TECLA: j */ 
 		
 		keyboard.j().onPressDo{simulacion.agregarInfectadoEnManzanaAleatoria()}
 		
 		/* Simular el paso de un día:
-		 * TECLA: k */ //Creado por David G.
+		 * TECLA: k */ 
 		
 		keyboard.k().onPressDo{simulacion.pasarUnDia()}
 		
@@ -37,14 +37,14 @@ object pandemiaGameConfig {
     	keyboard.down().onPressDo{ if(agente.position().y() > 0) {agente.moverAbajo()} }
     	
     	/* Aislar infectades:
-		 * TECLA: a */ //Creado en grupo.
+		 * TECLA: a */ 
     	
     	keyboard.a().onPressDo{agente.aislarInfectadesConSintomas()
     		game.say(agente, "Te metemos en aislamiento.")
     	}
     	
     	/* Convencer que respeten cuarentena:
-		 * TECLA: s */ //Creado en grupo.
+		 * TECLA: s */ 
 		 
 		 keyboard.s().onPressDo{
 		 	agente.acuarentenar()

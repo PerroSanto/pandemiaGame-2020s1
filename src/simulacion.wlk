@@ -45,41 +45,41 @@ object simulacion {
         return nuevaManzana
     }
     
-    method cantidadTotalDeInfectados(){//Creado por David G.
+    method cantidadTotalDeInfectados(){
     	return manzanas.sum({m => m.cantidadInfectados()})
     }
     
-    method cantidadTotalDePersonas(){//Creado por David G.
+    method cantidadTotalDePersonas(){
     	return manzanas.sum({m => m.cantidadHabitantes()})
     }
     
-    method cantidadTotalConSintomas(){//Creado por David G.
+    method cantidadTotalConSintomas(){
     	return manzanas.sum({m => m.cantidadConSintomas()})
     }
     
-    method cantidadDeManzanas(){//Creado por David G.
+    method cantidadDeManzanas(){
     	return manzanas.size()
     }
     
-    method estadoDeSimulacion(){//Creado por David G.
+    method estadoDeSimulacion(){
 		console.println("Día: " + self.diaActual() + ", Total de personas: " + self.cantidadTotalDePersonas()
  		+ ", infectados: " + self.cantidadTotalDeInfectados() + ", con síntomas: " + self.cantidadTotalConSintomas())
 	}
     
-    method agregarPersonaEnManzanaAleatoria(persona){//Creado por David G.
+    method agregarPersonaEnManzanaAleatoria(persona){
     	//Seleccionamos una manzana aleatoria.
     	const unaManzana = manzanas.anyOne()
     	//Agregamos a la persona.
     	unaManzana.agregarHabitante(persona)
     }
     
-    method agregarInfectadoEnManzanaAleatoria(){//Creado por David G.
+    method agregarInfectadoEnManzanaAleatoria(){
     	const infectado = new Persona()
     	infectado.infectarse()
     	self.agregarPersonaEnManzanaAleatoria(infectado)
     }
     
-    method obtenerManzanaDePosicion(posicion){//Creado en grupo.
+    method obtenerManzanaDePosicion(posicion){
     	return manzanas.find({m => m.position() == posicion})
     }
 }
