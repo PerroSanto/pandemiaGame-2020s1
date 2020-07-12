@@ -16,7 +16,7 @@ class Persona {
 	}
 
 	method debeCurarse() {
-		if ((diaDeInfeccion - simulacion.diaActual()).abs() == 5) {
+		if ((diaDeInfeccion - simulacion.diaActual()).abs() == 20) {
 			estaInfectada = false
 			presentaSintomas = false
 		}
