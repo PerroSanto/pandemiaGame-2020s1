@@ -31,7 +31,6 @@ object simulacion {
 	
 	method pasarUnDia(){
 		manzanas.forEach({m => m.pasarUnDia()})
-		manzanas.forEach({m => m.transladoDeUnHabitante()})
 		diaActual += 1
 		console.println("Terminó el día: " + (self.diaActual() - 1))
 	}
@@ -78,5 +77,9 @@ object simulacion {
     	const infectado = new Persona()
     	infectado.infectarse()
     	self.agregarPersonaEnManzanaAleatoria(infectado)
+    }
+    
+    method obtenerManzanaDePosicion(posicion){//Creado en grupo.
+    	return manzanas.find({m => m.position() == posicion})
     }
 }

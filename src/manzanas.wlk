@@ -37,6 +37,10 @@ class Manzana {
 		//agrega un conjunto de personas a la manzana.
 	}
 	
+	method borrarHabitante(unaPersona){
+		personas.remove(unaPersona)
+	}
+	
 	method cantidadHabitantes(){
 		return personas.size() 
 		//Devuelve la cantidad de personas que viven en una Manzana
@@ -48,14 +52,14 @@ class Manzana {
 	}
 
 	method pasarUnDia() {
-		// self.transladoDeUnHabitante() DESCOMENTAR LUEGO
-		//self.simulacionContagiosDiarios()
+		self.transladoDeUnHabitante()
 		self.simulacionContagiosDiariosPorCantidadDeInfectados()
-		// despues agregar la curacion
+		personas.forEach({p => p.pasarDia()})
 	}
 	
-	method personaSeMudaA(persona, manzanaDestino) {
-		// implementar
+	method personaSeMudaA(persona, manzanaDestino) {//Resuelto en grupo.
+		self.borrarHabitante(persona)
+		manzanaDestino.agregarHabitante(persona)
 	}
 	
 	method cantidadConSintomas(){//Creado por David G.
@@ -99,5 +103,18 @@ class Manzana {
 			self.personaSeMudaA(viajero, destino)			
 		}
 	}
+	
+	method habitantesInfectadesConSintomas(){
+		return personas.filter({p => p.estaInfectada() and p.presentaSintomas()})
+	}
+	
+	method aislarInfectades(){
+		self.habitantesInfectadesConSintomas().forEach({p => p.estaAislada(true)})
+	}
+	
+	method todosRespetanCuarentena(){
+		personas.forEach({p => p.respetaCuarentena(true)})
+	}
+	
 	
 }
