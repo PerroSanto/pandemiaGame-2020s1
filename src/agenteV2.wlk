@@ -2,7 +2,7 @@ import simulacionV2.*
 
 object agente {
 
-	var property image = "enfermerita.png"
+	var property image = "agente.png"
 	var property position
 
 	method cambiarPosicion(pos) {
@@ -38,4 +38,3 @@ object agente {
 	}
 
 }
-

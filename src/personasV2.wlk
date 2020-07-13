@@ -1,5 +1,5 @@
-import simulacion.*
-import manzanas.*
+import simulacionV2.*
+import manzanasV2.*
 
 class Persona {
  
@@ -15,7 +15,7 @@ class Persona {
 	}
 		
 	method debeCurarse() {
-		if ((diaDeInfeccion - simulacion.diaActual()).abs() == 20) {
+		if ((diaDeInfeccion - simulacion.diaActual()).abs() == 5) {
 			estaInfectada = false
 			presentaSintomas = false
 		}
@@ -32,4 +32,3 @@ class Persona {
 	}
 
 }
-

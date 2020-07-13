@@ -1,11 +1,11 @@
 import wollok.game.*
-import simulacion.*
-import agente.*
+import simulacionV2.*
+import agenteV2.*
 
 object pandemiaGameConfig {
 	method height() = 5
 	method width() = 5
-	method title() = "Simuléichon"
+	method title() = "Pandemia Game V2"
 	
 	method configureGame() {
 		self.configureGameParameters()
@@ -31,10 +31,26 @@ object pandemiaGameConfig {
 		// después, al agente de salud y sus teclas de acciones y movimiento
 		
 		//Movimientos del Agente:
-		keyboard.right().onPressDo{ if(agente.position().x() < self.width()-1) {agente.moverDerecha()} }
-   		keyboard.left().onPressDo{ if(agente.position().x() > 0) {agente.moverIzquierda()} } 
-    		keyboard.up().onPressDo{ if(agente.position().y() < self.height()-1) {agente.moverArriba() } }
-    		keyboard.down().onPressDo{ if(agente.position().y() > 0) {agente.moverAbajo()} }
+		keyboard.right().onPressDo{ if(agente.position().x() < self.width()-1) {agente.moverDerecha()
+						agente.aislarInfectadesConSintomas()
+						agente.acuarentenar()
+						game.say(agente, "Te metemos en aislamiento.")
+		} }
+   		keyboard.left().onPressDo{ if(agente.position().x() > 0) {agente.moverIzquierda()
+   						agente.aislarInfectadesConSintomas()
+						agente.acuarentenar()
+						game.say(agente, "Al calabozo!")
+   		} } 
+    	keyboard.up().onPressDo{ if(agente.position().y() < self.height()-1) {agente.moverArriba() 
+    						agente.aislarInfectadesConSintomas()
+						agente.acuarentenar()
+						game.say(agente, "No salgan de sus casas!")
+    	} }
+    	keyboard.down().onPressDo{ if(agente.position().y() > 0) {agente.moverAbajo()
+    						agente.aislarInfectadesConSintomas()
+						agente.acuarentenar()
+						game.say(agente, "Hay toque de queda!")
+    	} }
     	
     	/* Aislar infectades:
 		 * TECLA: a */ 
@@ -57,6 +73,7 @@ object pandemiaGameConfig {
 		game.height(self.height())
 		game.width(self.width())
 		game.title(self.title())
+		game.boardGround("background.png")
 	}
 	 
 	method agregarManzanas() {
@@ -77,12 +94,14 @@ object pandemiaGameConfig {
 	
 }
 
-program pandemiaGame {
+program pandemiaGameV2 {
 	pandemiaGameConfig.configureGame()
+	//este parte del codigo habilita el paso automatico de los dias.
+	game.onTick(5000,"diasAutomatico",{=> simulacion.pasarUnDia()
+						      simulacion.estadoDeSimulacion()
+	})
+	//
 	game.start()
 
 	
 }
-
-
-
