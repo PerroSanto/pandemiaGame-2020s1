@@ -12,11 +12,10 @@ class Persona {
 	method infectarse() {
 		diaDeInfeccion = simulacion.diaActual()
 		estaInfectada = true
-		presentaSintomas = true
 	}
-
+		
 	method debeCurarse() {
-		if ((diaDeInfeccion - simulacion.diaActual()).abs() == 20) {
+		if ((diaDeInfeccion - simulacion.diaActual()).abs() == 5) {
 			estaInfectada = false
 			presentaSintomas = false
 		}
@@ -26,6 +25,10 @@ class Persona {
 		if (estaInfectada) {
 			self.debeCurarse()
 		}
+	}
+	
+	method sePuedeMudar(){ 
+		return not self.estaAislada() and not self.respetaCuarentena()
 	}
 
 }

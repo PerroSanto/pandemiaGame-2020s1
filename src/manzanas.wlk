@@ -88,13 +88,15 @@ class Manzana {
 			self.noInfectades().forEach({ persona => 
 				if (simulacion.debeInfectarsePersona(persona, cantidadContagiadores)) {
 					persona.infectarse()
+					persona.presentaSintomas(simulacion.puedePresentarSintomas())
+					
 				}
 			})
 		}
 	}
 	 
 	method transladoDeUnHabitante() {
-		const quienesSePuedenMudar = personas.filter({ pers => not pers.estaAislada() })
+		const quienesSePuedenMudar = personas.filter({ pers => pers.sePuedeMudar() })
 		if (quienesSePuedenMudar.size() > 2) {
 			const viajero = quienesSePuedenMudar.anyOne()
 			const destino = simulacion.manzanas().filter({ manz => self.esManzanaVecina(manz) }).anyOne()

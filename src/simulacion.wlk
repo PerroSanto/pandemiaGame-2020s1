@@ -29,6 +29,10 @@ object simulacion {
 		return (1..cantidadContagiadores).any({n => self.tomarChance(chanceDeContagio) })	
 	}
 	
+	method puedePresentarSintomas(){
+		return self.tomarChance(chanceDePresentarSintomas)
+	}
+	
 	method pasarUnDia(){
 		manzanas.forEach({m => m.pasarUnDia()})
 		diaActual += 1

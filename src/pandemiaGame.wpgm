@@ -48,7 +48,7 @@ object pandemiaGameConfig {
 		 
 		 keyboard.s().onPressDo{
 		 	agente.acuarentenar()
-		 	game.say(agente, "Porfavor, quedense en casa!.")
+		 	game.say(agente, "Por favor, quedense en casa!.")
 		 }
 		 	
 		 }
